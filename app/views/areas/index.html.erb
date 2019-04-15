@@ -1,0 +1,31 @@
+<table class="table col-12 mt-5 border table-striped">
+  <thead>
+  <tr>
+    <th class="border-right">ID</th>
+    <th class="border-right">ZipCode</th>
+    <th class="border-right">PrefCode</th>
+    <th class="border-right">Address</th>
+    <th class="border-right">Kana</th>
+    <th>Introduction</th>
+  </tr>
+  </thead>
+  <% if @areas.any? %>
+    <% @areas.each do |a| %>
+      <tbody>
+      <tr>
+        <th class="border-right"><%= a.id %></th>
+        <td class="border-right"><%= a.zipcode %></td>
+        <td class="border-right"><%= a.prefcode %></td>
+        <td class="border-right"><%= a.address1 %><%= a.address2 %><%= a.address3 %></td>
+        <td class="border-right"><%= a.kana1 %><%= a.kana2 %><%= a.kana3 %></td>
+        <td><%= a.introduction %></td>
+      </tr>
+      </tbody>
+    <% end %>
+  <% else %>
+    <td>
+      <p>まだ登録されていません。</p>
+    </td>
+  <% end %>
+</table>
+<%= link_to "検索する", areas_search_path, class: "btn btn-primary col-12" %>

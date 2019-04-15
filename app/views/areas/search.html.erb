@@ -1,0 +1,35 @@
+<div class="col-md-6 offset-md-3 mb-5">
+  <% if @result.nil? || @result["status"] != 200 %>
+    <h1 class="text-center mt-5">エリア検索</h1>
+    <%= form_with(method: :get, local: true) do |f| %>
+      <%= f.label :zipcode, "郵便番号で検索" %>
+      <%= f.number_field :zipcode, class: "form-control" %>
+      <%= f.submit "検索", class: "btn btn-primary col-12 mt-3" %>
+    <% end %>
+  <% else%>
+    <% if @result["status"] == 200 %>
+      <h1 class="text-center mt-5 mb-5">エリア登録</h1>
+      <%= form_with(model: @area, local: true, url: '/areas/search') do |f| %>
+        <%= f.label :zipcode, "Zipcode" %>
+        <%= f.number_field :zipcode, class: "form-control", value: @zipcode, readonly: true %>
+        <%= f.label :prefcode, "Prefcode" %>
+        <%= f.text_field :prefcode, class: "form-control", value: @prefcode, readonly: true %>
+        <%= f.label :address1, "Address1" %>
+        <%= f.text_field :address1, class: "form-control", value: @address1, readonly: true %>
+        <%= f.label :kana1, "Kana1" %>
+        <%= f.text_field :kana1, class: "form-control", value: @kana1, readonly: true %>
+        <%= f.label :address2, "Address2" %>
+        <%= f.text_field :address2, class: "form-control", value: @address2, readonly: true %>
+        <%= f.label :kana2, "Kana2" %>
+        <%= f.text_field :kana2, class: "form-control", value: @kana2, readonly: true %>
+        <%= f.label :address3, "Address3" %>
+        <%= f.text_field :address3, class: "form-control", value: @address3, readonly: true %>
+        <%= f.label :kana3, "Kana3" %>
+        <%= f.text_field :kana3, class: "form-control", value: @kana3, readonly: true %>
+        <%= f.label :introduction, "Introduction" %>
+        <%= f.text_area :introduction, class: "form-control", rows: 3 %>
+        <%= f.submit "登録する", class: "btn btn-primary col-12 mt-3" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
